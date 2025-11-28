@@ -47,6 +47,7 @@ class Movimentacao(models.Model):
                 self.item.quantidade_atual = 0
         self.item.save()
 
+
      # NOVO: Calcula o valor total deste item em estoque
     @property
     def valor_total_estoque(self):

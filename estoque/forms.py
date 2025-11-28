@@ -1,3 +1,4 @@
+
 ﻿from django import forms
 from .models import Item, Movimentacao
 
@@ -7,11 +8,18 @@ class ItemForm(forms.ModelForm):
         if 'fornecedor' in self.fields:
             self.fields['fornecedor'].queryset = self.fields['fornecedor'].queryset.order_by('nome')
 
+
+from django import forms
+from .models import Item, Movimentacao
+
+class ItemForm(forms.ModelForm):
+
     class Meta:
         model = Item
         fields = '__all__'
 
 class MovimentacaoForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if 'item' in self.fields:
@@ -29,3 +37,8 @@ class MovimentacaoForm(forms.ModelForm):
         input_formats = {
             'data_devolucao_prevista': ['%d/%m/%Y', '%Y-%m-%d']
         }
+
+    class Meta:
+        model = Movimentacao
+        fields = ['item', 'tipo', 'quantidade', 'data_devolucao_prevista']
+
